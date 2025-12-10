@@ -35,9 +35,7 @@ public class ProductsController {
     @RequestMapping(path="/products", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Product addProduct(@RequestBody Product product) throws SQLException {
-        System.out.println("CREATE PRODUCT");
-        //return productDao.insert(product);
-        return new Product();
+        return productDao.insert(product);
     }
 
     @RequestMapping(path="/products/{id}", method=RequestMethod.PUT)
