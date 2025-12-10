@@ -23,31 +23,31 @@ public class ProductsController {
     }
 
     @RequestMapping(path="/products", method = RequestMethod.GET)
-    public List<Product> getProducts() {
+    public List<Product> getProducts() throws SQLException {
         return productDao.getAll();
     }
 
     @RequestMapping(path="/products/{id}", method=RequestMethod.GET)
-    public Product getProduct(@PathVariable int id){
+    public Product getProduct(@PathVariable int id) throws SQLException {
         return productDao.getById(id);
     }
 
     @RequestMapping(path="/products", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Product addProduct(@RequestBody Product product){
+    public Product addProduct(@RequestBody Product product) throws SQLException {
         System.out.println("CREATE PRODUCT");
         //return productDao.insert(product);
         return new Product();
     }
 
     @RequestMapping(path="/products/{id}", method=RequestMethod.PUT)
-    public void updateProduct( @PathVariable int id, @RequestBody Product product){
+    public void updateProduct( @PathVariable int id, @RequestBody Product product) throws SQLException {
         productDao.update(id,product);
     }
 
     @RequestMapping(path="/products/{id}", method=RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteProduct(@PathVariable int id){
+    public void deleteProduct(@PathVariable int id) throws SQLException {
         productDao.delete(id);
     }
 
